@@ -22,8 +22,12 @@ public:
         this->fields = fields;
     }
 
-    void push(T obj){
-        data.insert({next_id++,obj});
+    void push(T obj, int pos = -1){
+        if(pos >= next_id) throw "Wrong Id";
+        if (pos >= 0)
+            data[pos] = obj;
+        else
+            data.insert({next_id++,obj});
     }
 
     void save(){

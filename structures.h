@@ -2,6 +2,7 @@
 #define STRUCTURES
 
 #include <iostream>
+#include "validations.h"
 using namespace std;
 
 enum Roles{
@@ -93,6 +94,9 @@ struct Book{
         obj.author_id = stoi(val);
         getline(inp, val,',');
         obj.publisher_id = stoi(val);
+
+        if(obj.bt > DIGITAL || obj.bt < PAPER) throw "invalid book type argument";
+        if(obj.gener > ADVENTURE || obj.gener < FANTASY) throw "invalid gener argument";
         return inp;
     }
     
@@ -140,6 +144,12 @@ struct User{
         string val;
         getline(inp, val,',');
         obj.role = (Roles)stoi(val);
+
+        if(!isValidName(obj.name))throw "Wrong name";
+        if(!isValidEmail(obj.email))throw "Wrong email";
+        if(!isValidPassword(obj.password))throw "Wrong password";
+        if(obj.role > USER || obj.role < ADMIN) throw "invalid role argument";
+
         return inp;
     }
 };

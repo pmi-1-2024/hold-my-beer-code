@@ -251,8 +251,19 @@ void user(int session_id){
         orders.push(o);
     });
     commands.emplace_back("books",[](){
-        string operand ="lbook", id = "all";
-        find(operand, id, LIBRARIAN);
+
+        clear();
+        fout output(cout, 45);
+        for(auto p: lbooks.give_map()){
+            Book book = books.get_by_id(p.second.book_id);
+            output << p.first << p.second.amount_of_books;
+            output << book.name << to_string(book.year) +", "+ to_string(book.gener)+", "+to_string(book.pages)+", "+authors.get_by_id(book.author_id).last_name+", "+publishers.get_by_id(book.publisher_id).name;
+            output << libraries.get_by_id(p.second.library_id).name;
+            output << endl;
+        }
+        cout << "\nPress any key...";
+        getchar();
+        getchar();
     });
     commands.emplace_back("history",[&](){
         clear();

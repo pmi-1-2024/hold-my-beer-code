@@ -58,11 +58,12 @@ public:
         }
     }
 
-    T get_by_id(int id){
+    T& get_by_id(int id){
+        if(id >= next_id) throw "Wrong Id";
         return data[id];
     }
 
-    map<int, T> give_map(){
+    map<int, T>& give_map(){
         return data;
     }
 };

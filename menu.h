@@ -150,7 +150,7 @@ void find(string op, string id, Roles role){
     getchar();
 }
 
-void commander(vector<pair<string,function<void(int)>>> comands, string mline, int session_id, string msg = ""){
+void commander(vector<pair<string,function<void()>>> comands, string mline, string msg = ""){
     string command;
     bool invalid;
     while(true){
@@ -164,7 +164,7 @@ void commander(vector<pair<string,function<void(int)>>> comands, string mline, i
             if(command == "exit") break;
             for(auto p: comands)
                 if(command == p.first){
-                    p.second(session_id);
+                    p.second();
                     invalid = false;
                     break;
             }
@@ -177,52 +177,62 @@ void commander(vector<pair<string,function<void(int)>>> comands, string mline, i
 
 void admin(int session_id){
     string mline = "Posible commands:\n    add\n    find\n    change\n    exit\n\nCommand: ";
-    vector<pair<string,function<void(int)>>> commands;
-    commands.emplace_back("add",[](int session_id){
+    vector<pair<string,function<void()>>> commands;
+    commands.emplace_back("add",[](){
         string operand;
         cin >> operand;
         add(operand, ADMIN);
     });
-    commands.emplace_back("find",[](int session_id){
+    commands.emplace_back("find",[](){
         string operand, id;
         cin >> operand >> id;
         find(operand, id, ADMIN);
     });
-    commands.emplace_back("change",[](int session_id){
+    commands.emplace_back("change",[](){
         string operand, id;
         cin >> operand >> id;
         add(operand, ADMIN, stoi(id));
     });
 
-    commander(commands,mline,session_id);
+    commander(commands,mline);
 };
 
 void librarian(int session_id){
-    string mline = "Posible commands:\n    add(order,lbook,book)\n    find\n    change(order,lbook,book)\n    exit\n\nCommand: ";
-    vector<pair<string,function<void(int)>>> commands;
-    commands.emplace_back("add",[](int session_id){
+    string mline = "Posible commands:\n    add(order,lbook,book)\n    find\n    change(order,lbook,book)\n    close\n    exit\n\nCommand: ";
+    vector<pair<string,function<void()>>> commands;
+    commands.emplace_back("add",[](){
         string operand;
         cin >> operand;
         add(operand, LIBRARIAN);
     });
-    commands.emplace_back("find",[](int session_id){
+    commands.emplace_back("find",[](){
         string operand, id;
         cin >> operand >> id;
         find(operand, id, LIBRARIAN);
     });
-    commands.emplace_back("change",[](int session_id){
+    commands.emplace_back("change",[](){
         string operand, id;
         cin >> operand >> id;
         add(operand, LIBRARIAN, stoi(id));
     });
+    commands.emplace_back("close",[](){
+        string c;
+        cin >> c;
+        int id = stoi(c);
+        auto it = orders.give_map().find(id);
+        if (it == orders.give_map().end())  throw "Wrong Id";
+        lbooks.get_by_id((*it).second.lbook_id).amount_of_books ++;
+        orders.give_map().erase(it);
+        
+    });
 
-    commander(commands,mline,session_id);
+    commander(commands,mline);
 }
 
 void user(int session_id){
     string mline = "Posible commands:\n    order\n    books\n    history\n    exit\n\nCommand: ";
-    vector<pair<string,function<void(int)>>> commands;
-    commands.emplace_back("order",[](int session_id){
+    vector<pair<string,function<void()>>> commands;
+    commands.emplace_back("order",[&](){
         clear();
         cout << "Book Id: ";
         string sid;
@@ -231,7 +241,8 @@ void user(int session_id){
         Order o;
         o.user_id = session_id;
         o.lbook_id = id;
-
+        if(lbooks.get_by_id(id).amount_of_books <=0 ) throw "This books is not available at the moment";
+        lbooks.get_by_id(id).amount_of_books --;
         time_t rawtime;
         char buff[50];
         time(&rawtime);
@@ -239,11 +250,11 @@ void user(int session_id){
         o.date = buff;
         orders.push(o);
     });
-    commands.emplace_back("books",[](int session_id){
+    commands.emplace_back("books",[](){
         string operand ="lbook", id = "all";
         find(operand, id, LIBRARIAN);
     });
-    commands.emplace_back("history",[](int session_id){
+    commands.emplace_back("history",[&](){
         clear();
         fout output(cout, 45);
         LibraryBook lbook;
@@ -262,17 +273,17 @@ void user(int session_id){
 
     });
 
-    commander(commands,mline,session_id);
+    commander(commands,mline);
 };
 
 void menu(){
 
     string mline = "Posible commands:\n    reg\n    sign\n    exit\n\nCommand: ";
-    vector<pair<string,function<void(int)>>> commands;
-    commands.emplace_back("reg",[]( int session_id){reg();});
-    commands.emplace_back("sign",[](int session_id){sign();});
+    vector<pair<string,function<void()>>> commands;
+    commands.emplace_back("reg",[](){reg();});
+    commands.emplace_back("sign",[](){sign();});
 
-    commander(commands,mline,-1);
+    commander(commands,mline);
 }
 
 #endif

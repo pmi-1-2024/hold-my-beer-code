@@ -14,24 +14,24 @@ private:
     int role;
 
 public:
-    User() : id(0), name(""), email(""), password(""), role(0) {}
+    User() : id(0), name(""), email(""), password(""), role(2) {}
    
     User(int id, const string& name, const string& email, const string& password, int role)
         : id(id), name(name), email(email), password(password), role(role) {}
 
     
     int get_id() const { return id; }
-    string getName() const { return name; }
-    string getEmail() const { return email; }
-    string getPassword() const { return password; }
-    int getRole() const { return role; }
+    string get_name() const { return name; }
+    string get_email() const { return email; }
+    string get_password() const { return password; }
+    int get_role() const { return role; }
 
    
-    void setId(int newId) { id = newId; }
-    void setName(const string& newName) { name = newName; }
-    void setEmail(const string& newEmail) { email = newEmail; }
-    void setPassword(const string& newPassword) { password = newPassword; }
-    void setRole(int newRole) { role = newRole; }
+    void set_id(int newId) { id = newId; }
+    void set_name(const string& newName) { name = newName; }
+    void set_email(const string& newEmail) { email = newEmail; }
+    void set_password(const string& newPassword) { password = newPassword; }
+    void set_role(int newRole) { role = newRole; }
 
     void print(ostream& os) const {
         os << id << " " << name << " " << email << " " << password << " " << role;

@@ -22,9 +22,11 @@ public:
     void push(T obj, int pos = -1){
         if(pos >= next_id) throw "Wrong Id";
         if (pos >= 0)
-            data[pos] = obj;
+            obj.set_id(pos);
         else
-            data.insert({next_id++,obj});
+            obj.set_id(next_id++);
+        data[obj.get_id()] = obj;
+        
     }
 
     void save(){

@@ -1,3 +1,5 @@
+#ifndef PUBLIAHER
+#define PUBLIAHER
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -61,3 +63,4 @@ class Publisher{
             return out;
         }
 };
+#endif

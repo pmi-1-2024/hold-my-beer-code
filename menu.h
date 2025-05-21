@@ -5,9 +5,48 @@
 #include <functional>
 #include <vector>
 #include "validations.h"
+#include "data.h"
+#include "admin.h"
+#include "user_.h"
+#include "librarian.h"
 using namespace std;
 
-void sign(){}
+void sign(){
+      clear();
+    cout << "Sign In\n\n";  
+
+    Roles role;
+    int id = -1;
+
+    string email, password;
+    cout << "Email: ";
+    cin >> email;
+    cout<< "Password: ";
+    cin >> password;
+    for(auto p: users.get_map())
+        if(p.second.get_email() == email){
+            if(p.second.get_password() == password){
+                role = (Roles)p.second.get_role();
+                id = p.first;
+            }
+            else throw "Either the name or password is incorrect";
+            break;
+        }
+    
+    if(id == -1) throw "Such an acount does not exist";
+    
+    switch(role){
+        case ADMIN:
+            admin();
+            break;
+        case LIBRARIAN:
+            librarian();
+            break;
+        case USER:
+            user();
+            break;
+    }
+}
 
 void reg(){
   clear();

@@ -1,3 +1,5 @@
+#ifndef LBOOK
+#define LBOOK
 #include <iostream>
 #include <string>
 
@@ -49,3 +51,4 @@ public:
         return is;
     }
 };
+#endif

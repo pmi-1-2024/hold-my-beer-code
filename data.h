@@ -3,11 +3,11 @@
 #include "container.h"
 #include "book.h"
 #include "library.h"
-#include "author.cpp"
-#include "publisher.cpp"
-#include "User.cpp"
-#include "Library_book.cpp"
-#include "Order.cpp"
+#include "author.h"
+#include "publisher.h"
+#include "user.h"
+#include "library_book.h"
+#include "order.h"
 
 Container<Author> authors("data/authors.txt");
 Container<Publisher> publishers("data/publishers.txt");

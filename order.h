@@ -1,3 +1,5 @@
+#ifndef ORDER
+#define ORDER
 #include <iostream>
 #include <string>
 
@@ -51,3 +53,4 @@ public:
         return is;
     }
 };
+#endif

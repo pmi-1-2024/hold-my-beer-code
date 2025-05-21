@@ -1,4 +1,5 @@
-
+#ifndef USER
+#define USER
 #include <iostream>
 #include <string>
 
@@ -51,3 +52,4 @@ public:
     }
 };
 
+#endif

@@ -5,7 +5,8 @@
 using namespace std;
 
 class Book{
-    BookTypes bt;
+    int id;
+    BookTypes book_type;
     string name;
     int year;
     Genres gener;
@@ -16,28 +17,47 @@ class Book{
 public:
     Book(){};
 
+    int get_id(){return id;}
+    string get_name(){return name;}
+    int get_book_type(){return book_type;}
+    int get_year(){return year;}
+    int get_gener(){return gener;}
+    int get_pages(){return pages;}
+    int get_author_id(){return author_id;}
+    int get_publisher_id(){return publisher_id;}
+
+    void set_id(int a){id = a;}
+    void set_name(string n){ name = n;}
+    void set_book_type(int a){ book_type= (BookTypes)a;}
+    void set_year(int a){ year= a;}
+    void set_gener(int a){ gener = (Genres)a;}
+    void set_pages(int a){ pages= a;}
+    void set_author_id(int a){ author_id= a;}
+    void set_publisher_id(int a){ publisher_id= a;}
+
     friend ostream& operator<<(ostream& out, const Book& obj){
-        out << obj.bt << " " << obj.name << " " << obj.year << " " << obj.gener<< " " << obj.pages << " " << obj.author_id<< " " << obj.publisher_id;
+        out << obj.id << " " << obj.book_type << " " << obj.name << " " << obj.year << " " << obj.gener<< " " << obj.pages << " " << obj.author_id<< " " << obj.publisher_id;
         return out;
     }
 
     friend istream& operator>>(istream& inp, Book& obj){
+        inp >> obj.id;
         string val;
-        getline(inp, val);
-        obj.bt = (BookTypes)stoi(val);
-        getline(inp, obj.name);
-        getline(inp, val);
+        inp >> val;
+        obj.book_type = (BookTypes)stoi(val);
+        inp >> obj.name;
+        inp >> val;
         obj.year = stoi(val);
-        getline(inp, val);
+        inp >> val;
         obj.gener = (Genres)stoi(val);
-        getline(inp, val);
+        inp >> val;
         obj.pages = stoi(val);
-        getline(inp, val);
+        inp >> val;
         obj.author_id = stoi(val);
-        getline(inp, val);
+        inp >> val;
         obj.publisher_id = stoi(val);
 
-        if(obj.bt > DIGITAL || obj.bt < PAPER) throw "invalid book type argument";
+        if(obj.book_type > DIGITAL || obj.book_type < PAPER) throw "invalid book type argument";
         if(obj.gener > ADVENTURE || obj.gener < FANTASY) throw "invalid gener argument";
         return inp;
     }

@@ -18,14 +18,28 @@ void Books(){
   
 }
 void History(){
-  
+  clear();
+  bool found = false;
+  for (auto& p : orders.get_map()) {
+    if(p.second.getUserLiberyId()==session_id) {
+      cout <<" Order ID : "<<p.get_id() 
+           <<" Name : "<< books.get_by_id(lbooks.get_by_id(p.second.getLibraryBookId()).getBookId()).get_name()
+           <<" Date : "<< p.second.getBeginingDate()<<endl;
+     found = true;
+      
+    }
+  }
+  if (!found) {
+        cout << "No orders found "<<endl;
+    }
 }
+
 void user(int session_id){
   string s = "Posible commands:\n    order\n    books\n    history/n    exit\n\nCommand: ";
   vector<pair<string,function<void()>>> commands;
   commands.emplace_back("order",[](){Order();});
   commands.emplace_back("books",[](){Books();});
-  commands.emplace_back("history",[](){History();});
+  commands.emplace_back("history",[](){History(session_id);});
   commander(commands,s);
 }
 }

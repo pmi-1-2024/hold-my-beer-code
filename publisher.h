@@ -1,5 +1,5 @@
-#ifndef PUBLIAHER
-#define PUBLIAHER
+#ifndef PUBLISHER
+#define PUBLISHER
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -9,6 +9,7 @@ void clear(){
 void commander(vector<pair<string,function<void()>>> comands, string mline, string msg = ""){
     string command;
     bool invalid;
+    cin.exceptions(ios::failbit);
     while(true){
         try{
             clear();
@@ -27,7 +28,8 @@ void commander(vector<pair<string,function<void()>>> comands, string mline, stri
             if(invalid) throw "Wrong command";
         }
         catch(char const* e){msg = e;}
-        catch(invalid_argument& e){msg = "You cannot use string for int var";}
+        catch(invalid_argument& e){msg =  "You cannot use string value for int var";}
+        catch(const ios_base::failure& e) {msg =  "You cannot use string value for int var";}
     }
 }
 

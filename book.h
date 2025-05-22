@@ -46,16 +46,12 @@ public:
         inp >> val;
         obj.book_type = (BookTypes)stoi(val);
         inp >> obj.name;
-        inp >> val;
-        obj.year = stoi(val);
+        inp >> obj.year;
         inp >> val;
         obj.gener = (Genres)stoi(val);
-        inp >> val;
-        obj.pages = stoi(val);
-        inp >> val;
-        obj.author_id = stoi(val);
-        inp >> val;
-        obj.publisher_id = stoi(val);
+        inp >> obj.pages;
+        inp >> obj.author_id;
+        inp >> obj.publisher_id;
 
         if(obj.book_type > DIGITAL || obj.book_type < PAPER) throw "invalid book type argument";
         if(obj.gener > ADVENTURE || obj.gener < FANTASY) throw "invalid gener argument";

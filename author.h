@@ -1,3 +1,5 @@
+#ifndef AUTHOR
+#define AUTHOR
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -62,3 +64,4 @@ class Author{
             return out;
         }
 };
+#endif

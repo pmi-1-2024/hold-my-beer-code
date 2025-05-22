@@ -12,7 +12,7 @@
 using namespace std;
 
 void sign(){
-      clear();
+    clear();
     cout << "Sign In\n\n";  
 
     Roles role;
@@ -23,6 +23,8 @@ void sign(){
     cin >> email;
     cout<< "Password: ";
     cin >> password;
+    if(!isValidEmail(email)) throw "Wrong email";
+    if(!isValidPassword(password)) throw "Wrong password";
     for(auto p: users.get_map())
         if(p.second.get_email() == email){
             if(p.second.get_password() == password){
@@ -43,7 +45,7 @@ void sign(){
             librarian();
             break;
         case USER:
-            user();
+            user(id);
             break;
     }
 }

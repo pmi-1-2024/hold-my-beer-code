@@ -15,7 +15,7 @@ Container<Book> books("data/books.txt");
 Container<Library> libraries("data/libraries.txt");
 Container<User> users("data/users.txt");
 Container<LibraryBook> lbooks("data/lbooks.txt");
-Container<Order> orders("data/orders.txt");
+Container<Order2> orders("data/orders.txt");
 
 void load(){
     authors.load();

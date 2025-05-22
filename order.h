@@ -1,11 +1,11 @@
-#ifndef ORDER
-#define ORDER
+#ifndef ORDER_
+#define ORDER_
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class Order {
+class Order2 {
 private:
     int id;
     string begining_date;
@@ -14,10 +14,10 @@ private:
 
 public:
     
-    Order() : id(0), begining_date(""), user_libery_id(0), library_book_id(0) {}
+    Order2() : id(0), begining_date(""), user_libery_id(0), library_book_id(0) {}
 
     
-    Order(int id, const string& begining_date, int user_libery_id, int library_book_id)
+    Order2(int id, const string& begining_date, int user_libery_id, int library_book_id)
         : id(id), begining_date(begining_date), user_libery_id(user_libery_id), library_book_id(library_book_id) {}
 
    
@@ -42,13 +42,13 @@ public:
     }
 
 
-    friend ostream& operator<<(ostream& os, const Order& order) {
+    friend ostream& operator<<(ostream& os, const Order2& order) {
         order.print(os);
         return os;
     }
 
 
-    friend istream& operator>>(istream& is, Order& order) {
+    friend istream& operator>>(istream& is, Order2& order) {
         order.read(is);
         return is;
     }

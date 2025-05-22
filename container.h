@@ -25,6 +25,7 @@ public:
             obj.set_id(pos);
         else
             obj.set_id(next_id++);
+
         data[obj.get_id()] = obj;
         
     }
@@ -40,18 +41,22 @@ public:
         string s;
         T obj;
 
-        getline(file,s);
         while(!file.eof()){
+            getline(file,s);
+            if(s.length() == 0) break;
             istringstream is(s);
-
+            
+            try{
             is >> obj;
             next_id = obj.get_id()+1;
-            push(obj,obj.get_id());
+            push(obj,obj.get_id());}
+            catch(...){cout << "'" << s <<"'"<<src<<"'"<<endl;}
         }
     }
 
     T& get_by_id(int id){
         if(id >= next_id) throw "Wrong Id";
+        if(data.find(id) == data.end()) throw "Wrong Id";
         return data[id];
     }
 

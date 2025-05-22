@@ -39,13 +39,13 @@ void sign(){
     
     switch (role)
     {
-    case 0:
+    case ADMIN:
         admin();
         break;
-    case 1:
+    case LIBRARIAN:
         librarian();
         break;
-    case 2:
+    case USER:
         user(id);
         break;
     }

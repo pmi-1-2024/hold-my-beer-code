@@ -1,11 +1,12 @@
-#ifndef ADMIN
-#define ADMIN
+#ifndef ADMIN_
+#define ADMIN_
 #include "commander.h"
 #include <iostream>
 #include <functional>
 #include <vector>
 #include "validations.h"
 #include "data.h"
+#include "enums.h"
 using namespace std;
 
 
@@ -22,7 +23,7 @@ string input_str(int n, string fields[]){
 }
 
 stringstream input(int n, string fields[]){
-    return stringstream(input_str(n, fields));
+    return stringstream("-1 "+input_str(n, fields));
 }
 
 void add(string op, Roles role, int pos = -1){
@@ -64,7 +65,7 @@ void add(string op, Roles role, int pos = -1){
         lbooks.push(obj, pos);
     }
     else if(op == "order"){
-        Order obj;
+        Order2 obj;
         string arr[] = {"User Id: ", "LBook Id: ", "Data: "};
         input(3, arr) >> obj;
         orders.push(obj, pos);
@@ -85,15 +86,15 @@ void find(string op, int id ,Roles role)
             for(auto it: books.get_map())
                 cout << it.second << endl;
         }
-        else if(op == "library" && role == ADMIN){
+        else if(op == "library"){
             for(auto it: libraries.get_map())
                 cout << it.second << endl;
         }
-        else if(op == "publisher" && role == ADMIN){
+        else if(op == "publisher"){
             for(auto it: publishers.get_map())
                 cout << it.second << endl;
         }
-        else if(op == "author" && role == ADMIN){
+        else if(op == "author"){
             for(auto it: authors.get_map())
                 cout << it.second << endl;
         }
@@ -106,6 +107,11 @@ void find(string op, int id ,Roles role)
                 cout << it.second << endl;
         }
         else throw "invalid object name";
+
+        cout << "\nPress any key...";
+        getchar();
+        getchar();
+        return;
     }
     if(op == "user" && role == ADMIN){
         cout << users.get_by_id(id) << endl;
@@ -113,13 +119,13 @@ void find(string op, int id ,Roles role)
     else if(op == "book"){
         cout << books.get_by_id(id) << endl;
     }
-    else if(op == "library" && role == ADMIN){
+    else if(op == "library"){
         cout << libraries.get_by_id(id) << endl;
     }
-    else if(op == "publisher" && role == ADMIN){
+    else if(op == "publisher"){
         cout << publishers.get_by_id(id) << endl;
     }
-    else if(op == "author" && role == ADMIN){
+    else if(op == "author"){
         cout << authors.get_by_id(id) << endl;
     }
     else if(op == "lbook"){
@@ -129,6 +135,10 @@ void find(string op, int id ,Roles role)
         cout << orders.get_by_id(id) << endl;
     }
     else throw "invalid object name";
+
+    cout << "\nPress any key...";
+    getchar();
+    getchar();
 }
 
 

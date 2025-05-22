@@ -5,7 +5,7 @@ using namespace std;
 enum Roles{
     ADMIN, 
     LIBRARIAN, 
-    USER 
+    USER
 };
 
 enum BookTypes{
@@ -23,4 +23,5 @@ enum Genres{
     FICTION,
     ADVENTURE
 };
+
 #endif 

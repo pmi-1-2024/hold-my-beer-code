@@ -8,6 +8,7 @@
 #include "data.h"
 #include "admin.h"
 #include "user_.h"
+#include "enums.h"
 #include "librarian.h"
 using namespace std;
 

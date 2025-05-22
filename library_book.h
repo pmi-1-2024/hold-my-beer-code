@@ -27,7 +27,7 @@ public:
     int getBookId() const { return book_id; }
 
     
-    void setId(int newId) { id = newId; }
+    void set_id(int newId) { id = newId; }
     void setAmountOfBooks(int amount) { amount_of_books = amount; }
     void setLibraryId(int libId) { library_id = libId; }
     void setBookId(int bId) { book_id = bId; }

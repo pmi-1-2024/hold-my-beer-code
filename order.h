@@ -27,7 +27,7 @@ public:
     int getLibraryBookId() const { return library_book_id; }
 
    
-    void setId(int newId) { id = newId; }
+    void set_id(int newId) { id = newId; }
     void setBeginingDate(const string& newDate) { begining_date = newDate; }
     void setUserLiberyId(int newUserLibId) { user_libery_id = newUserLibId; }
     void setLibraryBookId(int newBookId) { library_book_id = newBookId; }

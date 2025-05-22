@@ -2,6 +2,7 @@
 #define USER
 #include <iostream>
 #include <string>
+#include "enums.h"
 
 
 using namespace std;

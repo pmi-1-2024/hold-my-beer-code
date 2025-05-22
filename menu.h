@@ -8,7 +8,6 @@
 #include "data.h"
 #include "admin.h"
 #include "user_.h"
-#include "enums.h"
 #include "librarian.h"
 using namespace std;
 
@@ -38,16 +37,17 @@ void sign(){
     
     if(id == -1) throw "Such an acount does not exist";
     
-    switch(role){
-        case ADMIN:
-            admin();
-            break;
-        case LIBRARIAN:
-            librarian();
-            break;
-        case USER:
-            user(id);
-            break;
+    switch (role)
+    {
+    case 0:
+        admin();
+        break;
+    case 1:
+        librarian();
+        break;
+    case 2:
+        user(id);
+        break;
     }
 }
 

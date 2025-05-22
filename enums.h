@@ -3,9 +3,9 @@
 using namespace std;
 
 enum Roles{
-    ADMIN,
-    LIBRARIAN,
-    USER
+    ADMIN, 
+    LIBRARIAN, 
+    USER 
 };
 
 enum BookTypes{

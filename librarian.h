@@ -150,7 +150,7 @@ void librarian(){
     commands.emplace_back("add",[](){
         string operand;
         cin >> operand;
-        add(operand, ADMIN);
+        add(operand, LIBRARIAN);
     });
     commands.emplace_back("find",[](){
         string operand, id;
@@ -160,12 +160,12 @@ void librarian(){
             i = -1;
         else
             i = stoi(id);
-        find(operand, i, ADMIN);
+        find(operand, i, LIBRARIAN);
     });
     commands.emplace_back("change",[](){
         string operand, id;
         cin >> operand >> id;
-        add(operand, ADMIN, stoi(id));
+        add(operand, LIBRARIAN, stoi(id));
     });
 
     commander(commands,s);

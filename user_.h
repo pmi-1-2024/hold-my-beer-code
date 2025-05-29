@@ -34,10 +34,19 @@ void History(){
     }
 }
 
+void add(){
+    clear();
+        Order2 obj;
+        string arr[] = {"User Id: ", "LBook Id: ", "Data: "};
+        input(3, arr) >> obj;
+        orders.push(obj, pos);
+}
+
+
 void user(int session_id){
   string s = "Posible commands:\n    order\n    books\n    history/n    exit\n\nCommand: ";
   vector<pair<string,function<void()>>> commands;
-  commands.emplace_back("order",[](){Order();});
+  commands.emplace_back("order",[](){add()});
   commands.emplace_back("books",[](){Books();});
   commands.emplace_back("history",[](){History(session_id);});
   commander(commands,s);

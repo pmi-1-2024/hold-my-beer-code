@@ -7,9 +7,6 @@
 #include "validations.h"
 #include "data.h"
 #include "enums.h"
-void Order(){
-  
-}
 void Books(){
   clear();
    for(auto it: lbooks.get_map()){

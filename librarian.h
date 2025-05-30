@@ -10,23 +10,7 @@
 using namespace std;
 
 
-string input_str(int n, string fields[]){
-    string s = "",val;
-    getline(cin,val);
-    for(int i =0 ; i < n; i++){
-        cout << fields[i];
-        getline(cin,val);
-        s += val;
-        if(i!=n-1) s += " ";
-    }
-    return s;
-}
-
-stringstream input(int n, string fields[]){
-    return stringstream("-1 "+input_str(n, fields));
-}
-
-void add(string op, Roles role, int pos = -1){
+void add_l(string op, Roles role, int pos = -1){
     clear();
     if(op == "user" && role == ADMIN){
         User obj;
@@ -73,7 +57,7 @@ void add(string op, Roles role, int pos = -1){
     else throw "invalid object name";
 }
 
-void find(string op, int id ,Roles role)
+void find_l(string op, int id ,Roles role)
 {
     clear();
     if(id == -1)
@@ -145,12 +129,12 @@ void find(string op, int id ,Roles role)
 
 
 void librarian(){
-    string s = "Posible commands:\n    add\n    find\n    change\n    exit\n\nCommand: ";
+    string s = "Posible commands:\n    add(book lbook order)\n    find(book library lbook publisher author oder)\n    change(book lbook order)\n    exit\n\nCommand: ";
     vector<pair<string,function<void()>>> commands;
     commands.emplace_back("add",[](){
         string operand;
         cin >> operand;
-        add(operand, LIBRARIAN);
+        add_l(operand, LIBRARIAN);
     });
     commands.emplace_back("find",[](){
         string operand, id;
@@ -160,12 +144,12 @@ void librarian(){
             i = -1;
         else
             i = stoi(id);
-        find(operand, i, LIBRARIAN);
+        find_l(operand, i, LIBRARIAN);
     });
     commands.emplace_back("change",[](){
         string operand, id;
         cin >> operand >> id;
-        add(operand, LIBRARIAN, stoi(id));
+        add_l(operand, LIBRARIAN, stoi(id));
     });
 
     commander(commands,s);

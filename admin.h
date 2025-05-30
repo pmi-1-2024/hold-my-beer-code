@@ -10,21 +10,6 @@
 using namespace std;
 
 
-string input_str(int n, string fields[]){
-    string s = "",val;
-    getline(cin,val);
-    for(int i =0 ; i < n; i++){
-        cout << fields[i];
-        getline(cin,val);
-        s += val;
-        if(i!=n-1) s += " ";
-    }
-    return s;
-}
-
-stringstream input(int n, string fields[]){
-    return stringstream("-1 "+input_str(n, fields));
-}
 
 void add(string op, Roles role, int pos = -1){
     clear();
